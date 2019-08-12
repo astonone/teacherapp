@@ -20,10 +20,6 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] pages = {"/index.html", "/", "/login", "/home"};
-    private static final String[] urls = {"/api/**"};
-    private static final String[] resources = {"/assets/*.ico", "/assets/*.png", "/assets/image/*.png", "/*.jpg", "/*.mp3", "/*bundle.js", "/*.otf", "/*.ttf", "/*.woff", "/*.eot", "/*.js", "/*.css", "/*.html"};
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -55,11 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
-                .antMatchers(pages).permitAll()
-                .antMatchers(urls).permitAll()
-                .antMatchers(resources).permitAll()
                 .anyRequest()
-                .fullyAuthenticated()
+                .permitAll()
                 .and()
                 .httpBasic()
                 .and().csrf().disable();

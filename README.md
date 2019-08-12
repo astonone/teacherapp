@@ -15,7 +15,7 @@ mvn spring-boot:run
 - Run
 - Open you browser an go to
 ```bash
-http://localhost:8082
+http://localhost:8802
 ``` 
 ## Release
 You can see deployed release version on

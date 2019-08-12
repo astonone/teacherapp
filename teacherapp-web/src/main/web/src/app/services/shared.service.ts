@@ -11,7 +11,7 @@ export class SharedService {
   private isProd: boolean = environment.production;
 
   private HOST_DEV = 'http://localhost';
-  private PORT_DEV = '8082';
+  private PORT_DEV = '8802';
 
   private HOST_PROD = 'https://teacher-kulygina-ov.herokuapp.com';
 

@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (this.shared.getStorage().getItem('token') !== null && this.shared.getStorage().getItem('token')) {
+        /*if (this.shared.getStorage().getItem('token') !== null && this.shared.getStorage().getItem('token')) {
         if (this.shared.getStorage().getItem('loggedUser') === '') {
             this.userService.auth()
                 .subscribe(data => {
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
         }
         } else {
             this.router.navigate(['']);
-        }
+        }*/
     }
 
     public isEmptyPhotoLink() {
