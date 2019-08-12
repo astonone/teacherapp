@@ -20,7 +20,7 @@ http://localhost:8802
 ## Release
 You can see deployed release version on
 ```bash
-At now, release version doesn't exist
+https://teacher-kulygina-ov.herokuapp.com
 ``` 
 
 
