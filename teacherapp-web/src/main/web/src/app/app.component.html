@@ -1,0 +1,46 @@
+﻿<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav
+        #drawer
+        class="sidenav"
+        fixedInViewport="true"
+        (click)="toggleSidenav(sidenav)"
+        [attr.role]="shared.isMobile() ? 'dialog' : 'navigation'"
+        [mode]="shared.isMobile() ? 'over' : 'side'"
+        [opened]="!shared.isMobile() && shared.isUserLogin()">
+        <mat-toolbar color="primary">Меню</mat-toolbar>
+        <mat-nav-list class="menu">
+            <div class="user-name">
+                <span *ngIf="shared.isMobile() && shared.isUserLogin()">Вы вошли как: {{showUserInfo()}}</span>
+            </div>
+            <div>
+                <a mat-list-item routerLink="/home">Главная</a>
+                <a mat-list-item routerLink="/music">Музыка</a>
+                <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item routerLink="/settings">Настройки</a>
+                <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item (click)="logout()">Выход</a>
+            </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" class="header-control-panel">
+            <div class="header-control-menu-panel">
+                <button
+                        (click)="drawer.toggle()"
+                        *ngIf="shared.isMobile() && shared.isUserLogin()"
+                        aria-label="Toggle sidenav"
+                        mat-icon-button
+                        type="button">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                 <div *ngIf="!shared.isMobile() && shared.isUserLogin()" class="header-panel-el">Вы вошли как: {{showUserInfo()}}</div>
+                <button *ngIf="!shared.isMobile() && shared.isUserLogin()" class="header-panel-el" routerLink="/settings" mat-raised-button color="link">Настройки</button>
+                <button  *ngIf="!shared.isMobile() && shared.isUserLogin()" class="header-panel-el" mat-raised-button color="warn" (click)="logout()">Выход</button>
+                <button  *ngIf="!shared.isUserLogin() && !shared.isLoginPage()" class="header-panel-el" mat-raised-button color="warn" (click)="gotoLogin()">Войти</button>
+            </div>
+            <div class="header-control-label-panel">
+                <span class="app-title">Teacher App</span>
+                <img class="app-img" src="../assets/app-icon.png">
+            </div>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

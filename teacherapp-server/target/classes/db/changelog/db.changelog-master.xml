@@ -1,0 +1,53 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <property name="timestamp.type" value="DATETIME" dbms="h2"/>
+    <property name="timestamp.type" value="DATETIME WITHOUT TIME ZONE" dbms="mysql"/>
+    <property name="now" value="CURRENT_TIMESTAMP()" dbms="h2"/>
+    <property name="now" value="NOW()" dbms="mysql"/>
+    <property name="timestamp.type" value="DATETIME WITHOUT TIME ZONE" dbms="postgresql"/>
+    <property name="now" value="NOW()" dbms="postgresql"/>
+
+    <changeSet author="viktor.kulygin" id="1">
+        <createTable tableName="user_details">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="photo_link" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="birthday" type="${timestamp.type}">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="viktor.kulygin" id="2">
+        <createTable tableName="user">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="user_details_id" type="INTEGER">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="user_details_id"
+                                 baseTableName="user"
+                                 constraintName="fk_user_user_details"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_details"/>
+    </changeSet>
+</databaseChangeLog>

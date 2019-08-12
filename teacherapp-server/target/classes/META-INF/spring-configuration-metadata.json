@@ -1,0 +1,11 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.kulygin.teacherapp.config.DataSourceInit",
+      "name": "spring.datasource",
+      "type": "com.kulygin.teacherapp.config.DataSourceInit"
+    }
+  ],
+  "properties": []
+}
