@@ -1,6 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { SharedService } from './services/shared.service';
 import { Router } from '@angular/router';
+import { LoginPopup } from './components/home/popup/login/login-popup';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +14,8 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
     constructor(public shared: SharedService,
-                private router: Router) {
+                private router: Router,
+                private dialog: MatDialog) {
         this.shared.setLoggedUser();
     }
 
@@ -29,8 +32,11 @@ export class AppComponent {
         this.shared.logout();
     }
 
-    public gotoLogin() {
-        this.router.navigate(['login']);
+    private openLoginPopup(): void {
+        const dialogRef = this.dialog.open(LoginPopup, {
+        });
+        dialogRef.afterClosed().subscribe(result => {
+        });
     }
 
     toggleSidenav(sidenav: any) {

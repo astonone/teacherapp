@@ -24,6 +24,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 /*Popups*/
 import { CreateUserDialog } from './components/registration/dialog/create-user-dialog';
 import { ErrorCreateUserDialog } from './components/registration/dialog/error-create-user-dialog';
+import { LoginPopup } from './components/home/popup/login/login-popup';
 
 /*Pipe*/
 import { SortPipe } from 'app/pipe/sort.pipe';
@@ -45,13 +46,16 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         RegistrationComponent,
         SettingsComponent,
         CreateUserDialog,
+        LoginPopup,
         ErrorCreateUserDialog,
         SortPipe],
     entryComponents: [
         CreateUserDialog,
         ErrorCreateUserDialog,
+        LoginPopup
     ],
     providers: [
+        LoginPopup,
         UserService,
         SharedService,
         FileService,

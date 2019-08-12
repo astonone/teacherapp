@@ -1,20 +1,5 @@
 ﻿<div class="home">
     <div class="home__card">
-        <mat-card>
-            <mat-card-header>
-                <div mat-card-avatar></div>
-                <mat-card-title>Мой профиль</mat-card-title>
-                <mat-card-subtitle>{{printUserName()}}</mat-card-subtitle>
-            </mat-card-header>
-            <img *ngIf="isEmptyPhotoLink()" mat-card-image src="./assets/image/empty-profile-black.png" alt="">
-            <div *ngIf="!isEmptyPhotoLink()">
-                <img class="user-photo" *ngFor="let file of photos | async" mat-card-image src="{{file}}" alt="">
-            </div>
-            <mat-card-content class="user-info">
-                <p>Email: {{user.email}}</p>
-                <p>День рождения: {{user.userDetails.birthday.printDate()}}</p>
-            </mat-card-content>
-        </mat-card>
     </div>
 
     <div class="home__content">
