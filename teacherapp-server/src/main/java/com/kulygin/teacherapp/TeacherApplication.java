@@ -1,4 +1,4 @@
-package com.kulygin.musiccloud;
+package com.kulygin.teacherapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
