@@ -1,8 +1,9 @@
-﻿import { Component } from '@angular/core';
+﻿import {Component, ElementRef, HostBinding, Inject} from '@angular/core';
 import { SharedService } from './services/shared.service';
 import { Router } from '@angular/router';
 import { LoginPopup } from './components/home/popup/login/login-popup';
 import { MatDialog } from '@angular/material';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +16,8 @@ import { MatDialog } from '@angular/material';
 export class AppComponent {
     constructor(public shared: SharedService,
                 private router: Router,
-                private dialog: MatDialog) {
+                private dialog: MatDialog,
+                @Inject(DOCUMENT) document: ElementRef) {
         this.shared.setLoggedUser();
     }
 
@@ -37,6 +39,11 @@ export class AppComponent {
         });
         dialogRef.afterClosed().subscribe(result => {
         });
+    }
+
+    onSetTheme(theme: string) {
+        let themeElement: any = document.getElementById('themeAsset');
+        themeElement.href = '/assets/theme/' + theme + '.css';
     }
 
     toggleSidenav(sidenav: any) {

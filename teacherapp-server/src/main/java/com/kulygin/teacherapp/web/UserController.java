@@ -11,6 +11,7 @@ import com.kulygin.teacherapp.exception.UserIsNotExistsException;
 import com.kulygin.teacherapp.service.UserService;
 import com.kulygin.teacherapp.service.impl.yandex.YandexAPI;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,6 +41,8 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private YandexAPI yandexAPI;
+    @Value("${reg.key}")
+    private String key;
 
     @RequestMapping("/login")
     public boolean login(@RequestBody User user) {
@@ -73,6 +76,22 @@ public class UserController {
             return getErrorResponseBody(ApplicationErrorTypes.IO_ERROR);
         }
         user = userService.uploadPhoto(user, file.getName());
+        return new ResponseEntity<>(convert(user), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "{id}/upload/file", method = RequestMethod.POST)
+    public ResponseEntity<?> uploadCustomFileToYandexDisk(@PathVariable("id") Long userId, @RequestParam("uploadedFile") MultipartFile uploadedFileRef) {
+        User user = userService.getUserById(userId);
+        File file = null;
+        if (user == null) {
+            return getErrorResponseBody(ApplicationErrorTypes.USER_ID_NOT_FOUND);
+        }
+        try {
+            file = yandexAPI.uploadFileToYandexDisk(uploadedFileRef);
+        } catch (Exception e) {
+            return getErrorResponseBody(ApplicationErrorTypes.IO_ERROR);
+        }
+        //need to save info about file
         return new ResponseEntity<>(convert(user), HttpStatus.OK);
     }
 
@@ -150,6 +169,9 @@ public class UserController {
 
     @RequestMapping(value = "/{id}/user_details", method = RequestMethod.PUT)
     public ResponseEntity<?> addUserDetails(@PathVariable("id") Long userId, @RequestBody UserDetailsDTO info) {
+        if (!info.getKey().equals(key)) {
+            return getErrorResponseBody(ApplicationErrorTypes.INCORRECT_REGISTRATION_KEY);
+        }
         User user = userService.getUserById(userId);
         if (user == null) {
             return getErrorResponseBody(ApplicationErrorTypes.USER_ID_NOT_FOUND);

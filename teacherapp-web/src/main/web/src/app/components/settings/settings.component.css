@@ -2,11 +2,9 @@
 }
 
 .setting__about {
-    background-color: #fff;
 }
 
 .setting__user {
-    background-color: #fafafa;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -46,7 +46,7 @@ export class SettingsComponent implements OnInit {
 
    ngOnInit() {
        if (this.shared.getLoggedUser() === null) {
-           this.router.navigate(['music']);
+           this.router.navigate(['home']);
        }
   }
 
@@ -108,6 +108,8 @@ export class SettingsComponent implements OnInit {
      this.selectedFiles = event.target.files;
      this.isError = false;
      this.isSuccess = false;
+     this.isLoading = false;
+     this.isSaving = false;
   }
 
   public upload() {

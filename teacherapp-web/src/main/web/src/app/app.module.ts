@@ -16,15 +16,14 @@ import { FileService } from './services/file.service';
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { UploadComponent } from './components/upload/upload.component';
-import { RegistrationComponent } from './components/registration/registration.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
 /*Popups*/
-import { CreateUserDialog } from './components/registration/dialog/create-user-dialog';
-import { ErrorCreateUserDialog } from './components/registration/dialog/error-create-user-dialog';
+import { CreateUserDialog } from './components/home/popup/registration/dialog/create-user-dialog';
+import { ErrorCreateUserDialog } from './components/home/popup/registration/dialog/error-create-user-dialog';
 import { LoginPopup } from './components/home/popup/login/login-popup';
+import { RegistrationPopup } from './components/home/popup/registration/registration-popup';
 
 /*Pipe*/
 import { SortPipe } from 'app/pipe/sort.pipe';
@@ -41,21 +40,24 @@ import { SortPipe } from 'app/pipe/sort.pipe';
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent,
         UploadComponent,
-        RegistrationComponent,
         SettingsComponent,
         CreateUserDialog,
-        LoginPopup,
         ErrorCreateUserDialog,
+        LoginPopup,
+        RegistrationPopup,
         SortPipe],
     entryComponents: [
         CreateUserDialog,
         ErrorCreateUserDialog,
-        LoginPopup
+        LoginPopup,
+        RegistrationPopup
     ],
     providers: [
         LoginPopup,
+        RegistrationPopup,
+        CreateUserDialog,
+        ErrorCreateUserDialog,
         UserService,
         SharedService,
         FileService,

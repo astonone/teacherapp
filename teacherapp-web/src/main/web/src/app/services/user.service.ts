@@ -64,9 +64,9 @@ export class UserService {
     return this.http.post<Observable<Object>>(this.USER_CREATE + '?email=' + email + '&password=' + password, this.getOptions());
   }
 
-  public addUserDetails(id, request) {
+  public addUserDetails(id: number, request: any) {
     const regExp = /{id}/gi;
-    const url = this.USER_ADD_USER_DATA.replace(regExp, id);
+    const url = this.USER_ADD_USER_DATA.replace(regExp, id.toString());
     return this.http.put<Observable<Object>>(url, request);
   }
 

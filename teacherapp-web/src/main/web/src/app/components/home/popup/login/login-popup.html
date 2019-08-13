@@ -14,10 +14,10 @@
         <label *ngIf="isAuthError" class="login-error-label">Ошибка, неверный логин или пароль!</label>
         <div class="login-buttons">
             <button class="login-button" mat-raised-button color="primary" (click)="login()">Вход</button>
-            <button [disabled]="true" class="login-button" mat-raised-button color="accent" routerLink="/registration">Регистрация</button>
+            <button class="login-button" mat-raised-button color="accent" (click)="openRegistrationPopup()">Регистрация</button>
+            <button class="login-button" mat-raised-button color="warn" (click)="closeLoginPopup()">Закрыть</button>
         </div>
     </div>
 </div>
 <div mat-dialog-actions class="modal-window-buttons">
-    <!--<button mat-raised-button color="primary" [mat-dialog-close]="" cdkFocusInitial>Продолжить</button>-->
 </div>
