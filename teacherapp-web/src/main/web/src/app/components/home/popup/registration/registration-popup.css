@@ -14,7 +14,8 @@
 }
 
 .registration-text-input {
-    width: 95vw;
+    width: 95%;
+    margin-bottom: 5px;
 }
 
 .registration-buttons {
@@ -45,6 +46,6 @@
 
 @media screen and (min-width: 481px) {
     .registration-text-input {
-        width: 300px;
+        width: 95%;
     }
 }

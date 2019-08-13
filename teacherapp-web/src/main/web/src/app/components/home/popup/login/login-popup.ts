@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { SharedService } from '../../../../services/shared.service';
 import { UserService } from '../../../../services/user.service';
+import { RegistrationPopup } from '../registration/registration-popup';
 
 @Component({
     selector: 'login-popup',
@@ -18,6 +19,7 @@ export class LoginPopup {
         public dialogRef: MatDialogRef<LoginPopup>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private shared: SharedService,
+        private dialog: MatDialog,
         private userService: UserService) {
     }
 
@@ -35,9 +37,40 @@ export class LoginPopup {
                     this.isAuthError = false;
                     this.shared.getStorage().setItem('token', btoa(email + ':' + password));
                     this.shared.getStorage().setItem('loggedUser', '');
+                    this.auth();
+                    this.closeLoginPopup();
                 } else {
                     this.isAuthError = true;
                 }
             });
+    }
+
+    private auth() {
+        if (this.shared.getStorage().getItem('token') !== null && this.shared.getStorage().getItem('token')) {
+            if (this.shared.getStorage().getItem('loggedUser') === '') {
+                this.userService.auth()
+                    .subscribe(data => {
+                            this.shared.getStorage().setItem('loggedUser', JSON.stringify(data));
+                            this.shared.setLoggedUser();
+                        },
+                        error => {
+                            if (error.status === 401) {
+                                this.shared.logout();
+                            }
+                        }
+                    );
+            }
+        }
+    }
+
+    private openRegistrationPopup(): void {
+            const dialogRef = this.dialog.open(RegistrationPopup, {
+            });
+        dialogRef.afterClosed().subscribe(result => {
+        });
+    }
+
+    public closeLoginPopup() {
+        this.dialogRef.close();
     }
 }

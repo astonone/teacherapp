@@ -14,10 +14,11 @@
             </div>
             <div>
                 <a mat-list-item routerLink="/home">Главная</a>
-                <a mat-list-item routerLink="/home">Портфолио</a>
-                <a mat-list-item routerLink="/home">Ученикам</a>
-                <a mat-list-item routerLink="/home">Родителям</a>
-                <a mat-list-item routerLink="/home">Материалы</a>
+                <a class="disabled" mat-list-item>Портфолио</a>
+                <a class="disabled" mat-list-item>Ученикам</a>
+                <a class="disabled" mat-list-item>Родителям</a>
+                <a class="disabled" mat-list-item>Материалы</a>
+                <a *ngIf="shared.isUserLogin()"mat-list-item routerLink="/upload">Загрузка</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item routerLink="/settings">Настройки</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item (click)="logout()">Выход</a>
             </div>
@@ -39,8 +40,17 @@
                 <button  *ngIf="!shared.isMobile() && shared.isUserLogin()" class="header-panel-el" mat-raised-button color="warn" (click)="logout()">Выход</button>
             </div>
             <div class="header-control-label-panel">
-                <button  *ngIf="!shared.isUserLogin() && !shared.isLoginPage()" class="header-panel-el" mat-raised-button color="warn" (click)="openLoginPopup()">Войти</button>
-                <span class="app-title">Teacher App</span>
+                <button mat-button [matMenuTriggerFor]="menu">Панель управления</button>
+                <mat-menu #menu="matMenu">
+                    <button *ngIf="!shared.isUserLogin() "mat-menu-item (click)="openLoginPopup()">Вход</button>
+                    <button mat-menu-item [matMenuTriggerFor]="themes">Темы</button>
+                </mat-menu>
+                <mat-menu #themes="matMenu">
+                    <button mat-menu-item (click)="onSetTheme('deeppurple-amber')">deeppurple-amber</button>
+                    <button mat-menu-item (click)="onSetTheme('indigo-pink')">indigo-pink</button>
+                    <button mat-menu-item (click)="onSetTheme('pink-bluegrey')">pink-bluegrey</button>
+                    <button mat-menu-item (click)="onSetTheme('purple-green')">purple-green</button>
+                </mat-menu>
                 <img class="app-img" src="../assets/app-icon.png">
             </div>
         </mat-toolbar>

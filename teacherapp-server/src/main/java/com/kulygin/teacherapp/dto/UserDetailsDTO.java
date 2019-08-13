@@ -12,6 +12,7 @@ public class UserDetailsDTO {
     private String firstName;
     private String lastName;
     private String photoLink;
+    private String key;
     private DateDTO birthday;
 
     public UserDetailsDTO() {
@@ -25,6 +26,7 @@ public class UserDetailsDTO {
         this.firstName = userDetails.getFirstName();
         this.lastName = userDetails.getLastName();
         this.photoLink = userDetails.getPhotoLink();
+        this.key = userDetails.getKey();
         this.birthday = new DateDTO(userDetails.getBirthday());
     }
 }

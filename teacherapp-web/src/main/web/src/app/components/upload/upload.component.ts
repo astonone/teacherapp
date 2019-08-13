@@ -28,7 +28,7 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     if (this.shared.getLoggedUser() === null) {
-      this.router.navigate(['music']);
+      this.router.navigate(['home']);
     }
     this.isError = false;
   }
@@ -43,7 +43,7 @@ export class UploadComponent implements OnInit {
     this.progress.percentage = 0;
 
     this.currentFileUpload = this.selectedFiles.item(0);
-    /*this.fileService.pushAudioFileToStorage( this.currentFileUpload)
+    this.fileService.pushFileToStorage(this.shared.getLoggedUser().id, this.currentFileUpload)
         .subscribe(event => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress.percentage = Math.round(100 * event.loaded / event.total);
@@ -62,6 +62,6 @@ export class UploadComponent implements OnInit {
         }, error => {
           this.isError = true;
         });
-    this.selectedFiles = undefined;*/
+    this.selectedFiles = undefined;
   }
 }

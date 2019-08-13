@@ -2,9 +2,15 @@
 }
 
 .home__card {
+
 }
 
 .home__content {
+
+}
+
+.home-text {
+    margin: 10px ;
 }
 
 @media screen and (min-width: 481px) {
@@ -14,10 +20,10 @@
     }
 
     .home__card {
-
+        width: 30%;
     }
 
     .home__content {
-
+        width: 70%;
     }
 }

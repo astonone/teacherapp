@@ -20,6 +20,8 @@ public class UserDetails {
     private String firstName;
     private String lastName;
     private String photoLink;
+    @Transient
+    private String key;
     private LocalDateTime birthday;
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "userDetails", optional = false)

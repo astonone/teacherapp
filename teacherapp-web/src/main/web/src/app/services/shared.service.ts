@@ -35,7 +35,6 @@ export class SharedService {
     this.loggedUser = {};
     this.getStorage().setItem('token', '');
     this.getStorage().setItem('loggedUser', '');
-    this.router.navigate(['/login']);
   }
 
   public setLoggedUser() {

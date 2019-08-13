@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 @Component({
     selector: 'error-create-user-dialog',
     templateUrl: 'error-create-user-dialog.html',
-    styleUrls: ['../registration.component.css']
+    styleUrls: ['../registration-popup.css']
 })
 export class ErrorCreateUserDialog {
 
