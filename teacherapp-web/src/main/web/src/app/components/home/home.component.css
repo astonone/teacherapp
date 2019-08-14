@@ -1,29 +1,32 @@
 .home {
-}
-
-.home__card {
-
-}
-
-.home__content {
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url(../../../assets/image/math.jpg) repeat-y;
 }
 
 .home-text {
+    font-size: large;
     margin: 10px ;
+    color: white;
+    text-align: center;
 }
 
 @media screen and (min-width: 481px) {
     .home {
         display: flex;
+        align-items: center;
+        justify-content: center;
         min-height: calc(100vh - 64px);
+        background: url(../../../assets/image/math.jpg) repeat-y;
+        height: 100vh;
     }
 
-    .home__card {
-        width: 30%;
-    }
-
-    .home__content {
-        width: 70%;
+    .home-text {
+        font-size: xx-large;
+        margin: 10px ;
+        color: white;
+        text-align: center;
     }
 }

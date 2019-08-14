@@ -16,6 +16,7 @@ import { FileService } from './services/file.service';
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { SettingsComponent } from './components/settings/settings.component';
 
@@ -40,6 +41,7 @@ import { SortPipe } from 'app/pipe/sort.pipe';
     declarations: [
         AppComponent,
         HomeComponent,
+        PortfolioComponent,
         UploadComponent,
         SettingsComponent,
         CreateUserDialog,
@@ -61,7 +63,8 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         UserService,
         SharedService,
         FileService,
-        HomeComponent
+        HomeComponent,
+        PortfolioComponent
     ],
     bootstrap: [AppComponent]
 })
