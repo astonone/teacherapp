@@ -21,6 +21,19 @@
                 <a *ngIf="shared.isUserLogin()"mat-list-item routerLink="/upload">Загрузка</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item routerLink="/settings">Настройки</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item (click)="logout()">Выход</a>
+                <mat-accordion *ngIf="shared.isMobile()">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Темы
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <button [ngStyle]="{'background-color':isSelected('deeppurple-amber') ? 'red' : '' }" mat-menu-item (click)="onSetTheme('deeppurple-amber')">deeppurple-amber</button>
+                        <button [ngStyle]="{'background-color':isSelected('indigo-pink') ? 'red' : '' }"mat-menu-item (click)="onSetTheme('indigo-pink')">indigo-pink</button>
+                        <button [ngStyle]="{'background-color':isSelected('pink-bluegrey') ? 'red' : '' }"mat-menu-item (click)="onSetTheme('pink-bluegrey')">pink-bluegrey</button>
+                        <button [ngStyle]="{'background-color':isSelected('purple-green') ? 'red' : '' }"mat-menu-item (click)="onSetTheme('purple-green')">purple-green</button>
+                    </mat-expansion-panel>
+                </mat-accordion>
             </div>
         </mat-nav-list>
     </mat-sidenav>
@@ -43,7 +56,7 @@
                 <button mat-button [matMenuTriggerFor]="menu">Панель управления</button>
                 <mat-menu #menu="matMenu">
                     <button *ngIf="!shared.isUserLogin() "mat-menu-item (click)="openLoginPopup()">Вход</button>
-                    <button mat-menu-item [matMenuTriggerFor]="themes">Темы</button>
+                    <button *ngIf="!shared.isMobile()" mat-menu-item [matMenuTriggerFor]="themes">Темы</button>
                 </mat-menu>
                 <mat-menu #themes="matMenu">
                     <button mat-menu-item (click)="onSetTheme('deeppurple-amber')">deeppurple-amber</button>

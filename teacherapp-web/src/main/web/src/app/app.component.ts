@@ -51,4 +51,9 @@ export class AppComponent {
             sidenav.toggle();
         }
     }
+
+    isSelected(theme: string) {
+        let themeElement: any = document.getElementById('themeAsset');
+        return themeElement.href.toString().includes(theme);
+    }
 }
