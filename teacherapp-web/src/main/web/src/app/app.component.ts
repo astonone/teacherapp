@@ -14,6 +14,9 @@ import { DOCUMENT } from '@angular/common';
 })
 
 export class AppComponent {
+
+    public panelOpenState = true;
+
     constructor(public shared: SharedService,
                 private router: Router,
                 private dialog: MatDialog,
@@ -42,7 +45,7 @@ export class AppComponent {
     }
 
     onSetTheme(theme: string) {
-        let themeElement: any = document.getElementById('themeAsset');
+        const themeElement: any = document.getElementById('themeAsset');
         themeElement.href = '/assets/theme/' + theme + '.css';
     }
 
@@ -53,7 +56,7 @@ export class AppComponent {
     }
 
     isSelected(theme: string) {
-        let themeElement: any = document.getElementById('themeAsset');
+        const themeElement: any = document.getElementById('themeAsset');
         return themeElement.href.toString().includes(theme);
     }
 }

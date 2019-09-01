@@ -22,7 +22,7 @@
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item routerLink="/settings">Настройки</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item (click)="logout()">Выход</a>
                 <mat-accordion *ngIf="shared.isMobile()">
-                    <mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 Темы
