@@ -86,7 +86,7 @@ public class MaterialsController {
     }
 
     @RequestMapping(value = "/folder/{id}/deleteFile", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteCustomFileFromFolder(@PathVariable("id") Integer folderId, @RequestParam("filename") String filename) {
+    public ResponseEntity<?> deleteCustomFileFromFolder(@PathVariable("id") Integer folderId, @RequestParam("name") String filename) {
         Folder folder = materialsService.getFolderById(folderId);
         if (folder == null) {
             return getErrorResponseBody(ApplicationErrorTypes.FOLDER_ID_NOT_FOUND);

@@ -162,6 +162,6 @@ export class SettingsComponent implements OnInit {
   }
 
   private getPhoto() {
-     this.photos = this.fileService.getUploadedPhoto(this.loggedUser.getPhotoLink());
+     this.photos = this.fileService.getFile(this.loggedUser.getPhotoLink());
   }
 }

@@ -1,0 +1,9 @@
+<div class="materials-container">
+  <mat-list>
+    <h3 mat-subheader>Папки</h3>
+    <mat-list-item *ngFor="let folder of folders">
+      <mat-icon mat-list-icon class="item" (click)="gotoFolder(folder.id)">folder</mat-icon>
+      <h4 class="item" (click)="gotoFolder(folder.id)" mat-line>{{folder.name}}</h4>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -14,7 +14,7 @@ import static org.hibernate.validator.internal.util.CollectionHelper.newArrayLis
 @Setter
 public class FolderDTO {
     private Integer id;
-    private String filename;
+    private String name;
     private List<FileDTO> files;
 
     public FolderDTO() {
@@ -25,7 +25,7 @@ public class FolderDTO {
             return;
         }
         this.id = folder.getId();
-        this.filename = folder.getName();
+        this.name = folder.getName();
         this.files = ofNullable(folder.getFiles()).orElse(newArrayList()).stream()
                 .map(FileDTO::new)
                 .collect(Collectors.toList());
