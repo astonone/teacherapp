@@ -1,9 +1,10 @@
+<button *ngIf="shared.isUserLogin()" class="upload-button" (click)="uploadFileToFolder()" mat-raised-button color="primary">Загрузить файл</button>
 <div class="folder-container">
-  <button *ngIf="shared.isUserLogin()" (click)="uploadFileToFolder()" mat-raised-button color="primary">Загрузить файл</button>
   <mat-list>
     <h3 mat-subheader>Файлы</h3>
     <mat-list-item *ngFor="let file of files">
       <mat-icon mat-list-icon>note</mat-icon>
+      <mat-icon *ngIf="shared.isUserLogin()" mat-list-icon class="remove-item" (click)="deleteFileFromFolder(file.id)">delete_sweep</mat-icon>
       <a mat-line *ngFor="let f of file.link | async" href="{{f}}">{{file.filename}}</a>
     </mat-list-item>
   </mat-list>

@@ -7,7 +7,8 @@ import { MaterialsService } from '../../services/materials.service';
 import { Folder } from '../../dto/folder';
 import { File } from '../../dto/file';
 import { Observable } from 'rxjs';
-import { UploadPopup } from './popup/upload-popup';
+import { UploadPopup } from './popup/upload/upload-popup';
+import { DeleteFilePopup } from './popup/delete/delete-file-popup';
 
 @Component({
   selector: 'app-download',
@@ -50,5 +51,13 @@ export class FolderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.loadFolder(this.folderId);
     });
+  }
+
+  deleteFileFromFolder(fileId: number) {
+    const dialogRef = this.dialog.open(DeleteFilePopup, {data: {folderId: this.folderId, fileId : fileId}
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.loadFolder(this.folderId);
+      });
   }
 }

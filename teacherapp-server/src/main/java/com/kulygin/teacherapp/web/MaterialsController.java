@@ -86,12 +86,12 @@ public class MaterialsController {
     }
 
     @RequestMapping(value = "/folder/{id}/deleteFile", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteCustomFileFromFolder(@PathVariable("id") Integer folderId, @RequestParam("name") String filename) {
+    public ResponseEntity<?> deleteCustomFileFromFolder(@PathVariable("id") Integer folderId, @RequestParam("fileId") Integer fileId) {
         Folder folder = materialsService.getFolderById(folderId);
         if (folder == null) {
             return getErrorResponseBody(ApplicationErrorTypes.FOLDER_ID_NOT_FOUND);
         }
-        folder = materialsService.deleteFileFromFolder(folder, filename);
+        folder = materialsService.deleteFileFromFolder(folder, fileId);
         return new ResponseEntity<>(convert(folder), HttpStatus.OK);
     }
 

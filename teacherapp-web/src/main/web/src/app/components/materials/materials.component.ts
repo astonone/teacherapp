@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { MaterialsService } from '../../services/materials.service';
 import { Folder } from '../../dto/folder';
 import { FoldersList } from '../../dto/folder-list';
+import { CreateFolderPopup } from './popup/folders/create-rename/create-folder-popup';
+import {DeleteFolderPopup} from './popup/folders/delete/delete-folder-popup';
 
 @Component({
   selector: 'app-download',
@@ -34,5 +36,21 @@ export class MaterialsComponent implements OnInit {
 
   gotoFolder(folderId: number) {
     this.router.navigate(['folder/' + folderId]);
+  }
+
+  private openCreateFolderPopup(isRename: boolean, folderId: number, folderName: string): void {
+    const dialogRef = this.dialog.open(CreateFolderPopup, {data : {isRename : isRename, folderId: folderId, folderName: folderName}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadFolders();
+    });
+  }
+
+  private openDeleteFolderPopup(folderId: number): void {
+    const dialogRef = this.dialog.open(DeleteFolderPopup, {data : {folderId: folderId}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadFolders();
+    });
   }
 }

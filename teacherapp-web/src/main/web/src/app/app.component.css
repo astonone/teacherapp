@@ -32,6 +32,9 @@
     box-shadow: 3px 0 6px rgba(0,0,0,.24);
 }
 
+.mat-sidenav-content {
+}
+
 .menu {
     display: flex;
     flex-direction: column;
@@ -49,4 +52,10 @@
 .disabled {
     cursor: not-allowed;
     color: gray;
+}
+
+@media screen and (min-width: 481px) {
+    .mat-sidenav-content {
+        overflow: hidden;
+    }
 }

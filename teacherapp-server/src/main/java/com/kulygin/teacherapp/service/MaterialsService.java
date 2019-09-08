@@ -19,5 +19,5 @@ public interface MaterialsService {
 
     Folder addFileToFolder(Folder folder, File file) throws FileAlreadyExistsException;
 
-    Folder deleteFileFromFolder(Folder folder, String filename);
+    Folder deleteFileFromFolder(Folder folder, Integer fileId);
 }

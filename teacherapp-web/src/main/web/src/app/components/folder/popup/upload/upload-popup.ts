@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
-import { SharedService } from '../../../services/shared.service';
+import { SharedService } from '../../../../services/shared.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { FileService } from '../../../services/file.service';
+import { FileService } from '../../../../services/file.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
