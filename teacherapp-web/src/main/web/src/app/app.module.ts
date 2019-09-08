@@ -28,7 +28,10 @@ import { CreateUserDialog } from './components/home/popup/registration/dialog/cr
 import { ErrorCreateUserDialog } from './components/home/popup/registration/dialog/error-create-user-dialog';
 import { LoginPopup } from './components/home/popup/login/login-popup';
 import { RegistrationPopup } from './components/home/popup/registration/registration-popup';
-import { UploadPopup } from './components/folder/popup/upload-popup';
+import { UploadPopup } from './components/folder/popup/upload/upload-popup';
+import { CreateFolderPopup } from './components/materials/popup/folders/create-rename/create-folder-popup';
+import { DeleteFolderPopup } from './components/materials/popup/folders/delete/delete-folder-popup';
+import { DeleteFilePopup } from './components/folder/popup/delete/delete-file-popup';
 
 /*Pipe*/
 import { SortPipe } from 'app/pipe/sort.pipe';
@@ -54,19 +57,28 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         LoginPopup,
         RegistrationPopup,
         UploadPopup,
+        CreateFolderPopup,
+        DeleteFolderPopup,
+        DeleteFilePopup,
         SortPipe],
     entryComponents: [
         CreateUserDialog,
         ErrorCreateUserDialog,
         LoginPopup,
         RegistrationPopup,
-        UploadPopup
+        UploadPopup,
+        CreateFolderPopup,
+        DeleteFolderPopup,
+        DeleteFilePopup
     ],
     providers: [
         LoginPopup,
         RegistrationPopup,
         UploadPopup,
+        CreateFolderPopup,
         CreateUserDialog,
+        DeleteFolderPopup,
+        DeleteFilePopup,
         ErrorCreateUserDialog,
         UserService,
         SharedService,

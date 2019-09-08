@@ -1,0 +1,19 @@
+<h1 *ngIf="!isRename" mat-dialog-title class="modal-window-text-item">Создание папки</h1>
+<h1 *ngIf="isRename" mat-dialog-title class="modal-window-text-item">Изменение папки</h1>
+<div mat-dialog-content>
+    <div class="create-folder-popup-container">
+        <h3 *ngIf="!isRename">Пожалуйста, введите имя для новой папки</h3>
+        <h3 *ngIf="isRename">Пожалуйста, введите новое имя для папки</h3>
+        <mat-form-field class="create-folder-popup-text-input" appearance="outline">
+            <mat-label>Имя</mat-label>
+            <input matInput type="text" placeholder="Имя папки" [(ngModel)]="folderName">
+        </mat-form-field>
+        <label *ngIf="!isRename && isError" class="create-folder-popup-error-label">Ошибка, не удалось создать папку, попробуйте другое имя!</label>
+        <label *ngIf="isRename && isError" class="create-folder-popup-error-label">Ошибка, не переименовать создать папку, попробуйте другое имя!</label>
+        <div class="create-folder-popup-buttons">
+            <button class="create-folder-popup-button" mat-raised-button color="primary" (click)="createFolder()" *ngIf="!isRename">Создать</button>
+            <button class="create-folder-popup-button" mat-raised-button color="primary" (click)="renameFolder()" *ngIf="isRename">Переименовать</button>
+            <button class="create-folder-popup-button" mat-raised-button color="warn" (click)="closePopup()">Отмена</button>
+        </div>
+    </div>
+</div>

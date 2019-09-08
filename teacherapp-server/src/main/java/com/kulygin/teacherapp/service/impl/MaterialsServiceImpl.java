@@ -65,8 +65,8 @@ public class MaterialsServiceImpl implements MaterialsService {
     }
 
     @Override
-    public Folder deleteFileFromFolder(Folder folder, String filename) {
-        com.kulygin.teacherapp.domain.File file = fileRepository.findByFilename(filename);
+    public Folder deleteFileFromFolder(Folder folder, Integer fileId) {
+        com.kulygin.teacherapp.domain.File file = fileRepository.findById(fileId).orElse(null);
         if (file != null) {
             folder.getFiles().remove(file);
             file.setFolder(null);
