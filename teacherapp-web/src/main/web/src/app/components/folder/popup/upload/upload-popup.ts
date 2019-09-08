@@ -59,6 +59,9 @@ export class UploadPopup {
                     this.response = event;
                 }
             }, error => {
+                this.isSuccess = false;
+                this.isLoading = false;
+                this.isSaving = false;
                 this.isError = true;
             });
         this.selectedFiles = undefined;

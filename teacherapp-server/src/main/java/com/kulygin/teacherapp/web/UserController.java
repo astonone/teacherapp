@@ -43,6 +43,7 @@ public class UserController {
     private YandexAPI yandexAPI;
     @Value("${reg.key}")
     private String key;
+    private Long PORTFOLIO_USER_ID = 1L;
 
     @RequestMapping("/login")
     public boolean login(@RequestBody User user) {
@@ -63,9 +64,9 @@ public class UserController {
         return convert(userByEmail);
     }
 
-    @RequestMapping(value = "{id}/upload", method = RequestMethod.POST)
-    public ResponseEntity<?> uploadToYandexDisk(@PathVariable("id") Long userId, @RequestParam("uploadedFile") MultipartFile uploadedFileRef) {
-        User user = userService.getUserById(userId);
+    @RequestMapping(value = "/uploadPortfolioPhoto", method = RequestMethod.POST)
+    public ResponseEntity<?> uploadPortfolioPhoto(@RequestParam("uploadedFile") MultipartFile uploadedFileRef) {
+        User user = userService.getUserById(PORTFOLIO_USER_ID);
         File file = null;
         if (user == null) {
             return getErrorResponseBody(ApplicationErrorTypes.USER_ID_NOT_FOUND);
@@ -76,22 +77,6 @@ public class UserController {
             return getErrorResponseBody(ApplicationErrorTypes.IO_ERROR);
         }
         user = userService.uploadPhoto(user, file.getName());
-        return new ResponseEntity<>(convert(user), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "{id}/upload/file", method = RequestMethod.POST)
-    public ResponseEntity<?> uploadCustomFileToYandexDisk(@PathVariable("id") Long userId, @RequestParam("uploadedFile") MultipartFile uploadedFileRef) {
-        User user = userService.getUserById(userId);
-        File file = null;
-        if (user == null) {
-            return getErrorResponseBody(ApplicationErrorTypes.USER_ID_NOT_FOUND);
-        }
-        try {
-            file = yandexAPI.uploadFileToYandexDisk(uploadedFileRef);
-        } catch (Exception e) {
-            return getErrorResponseBody(ApplicationErrorTypes.IO_ERROR);
-        }
-        //need to save info about file
         return new ResponseEntity<>(convert(user), HttpStatus.OK);
     }
 
@@ -109,14 +94,26 @@ public class UserController {
                 .body(file);
     }
 
-    @RequestMapping(value = "/{id}/deletePhoto", method = RequestMethod.POST)
-    public ResponseEntity<?> deleteUserPhoto(@PathVariable("id") Long userId) {
-        User user = userService.getUserById(userId);
+    @RequestMapping(value = "/deletePortfolioPhoto", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteUserPhoto() {
+        User user = userService.getUserById(PORTFOLIO_USER_ID);
         if (user == null) {
             return getErrorResponseBody(ApplicationErrorTypes.USER_ID_NOT_FOUND);
         }
         user = userService.deletePhoto(user);
         return new ResponseEntity<>(convert(user), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/getPortfolioFile")
+    public ResponseEntity<List<String>> getPortfolioFile() {
+        User user = userService.getUserById(PORTFOLIO_USER_ID);
+        List<String> fileNames = Arrays.asList(MvcUriComponentsBuilder.fromMethodName(UserController.class, "getFile", user.getUserDetails().getPhotoLink()).build().toString());
+        return ResponseEntity.ok().body(fileNames);
+    }
+
+    @GetMapping(value = "/getPortfolioUser")
+    public ResponseEntity<?> getPortfolioUser() {
+        return new ResponseEntity<>(convert(userService.getUserById(PORTFOLIO_USER_ID)), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

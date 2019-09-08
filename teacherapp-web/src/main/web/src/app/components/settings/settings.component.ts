@@ -28,6 +28,7 @@ export class SettingsComponent implements OnInit {
   public isSaving: boolean;
   public isSuccessAccountSaving: boolean;
   public photos: Observable<string[]>;
+  public portfolioUser: User = User.createEmptyUser();
 
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -37,10 +38,10 @@ export class SettingsComponent implements OnInit {
               private userService: UserService,
               private fileService: FileService,
               private router: Router) {
+      this.loadPortfolioUser();
       this.isAccountDataNotCorrect = false;
       this.isAccountInfoDataNotCorrect = false;
       this.loggedUser = this.shared.getLoggedUser();
-      this.getPhoto();
       this.birthday = this.loggedUser.userDetails.birthday.toDate();
   }
 
@@ -48,7 +49,14 @@ export class SettingsComponent implements OnInit {
        if (this.shared.getLoggedUser() === null) {
            this.router.navigate(['home']);
        }
-  }
+   }
+
+   loadPortfolioUser() {
+      this.userService.getPortfolioUser().subscribe(data => {
+          this.portfolioUser = new User(data);
+          this.getPhoto();
+      });
+   }
 
     public saveUserInfo() {
       if (this.validUserInfo()) {
@@ -116,7 +124,7 @@ export class SettingsComponent implements OnInit {
      this.progress.percentage = 0;
 
      this.currentFileUpload = this.selectedFiles.item(0);
-     this.fileService.pushPhotoFileToStorage(this.loggedUser.id, this.currentFileUpload)
+     this.fileService.uploadPortfolioPhoto(this.currentFileUpload)
          .subscribe(event => {
          if (event.type === HttpEventType.UploadProgress) {
              this.progress.percentage = Math.round(100 * event.loaded / event.total);
@@ -126,11 +134,9 @@ export class SettingsComponent implements OnInit {
                  this.isSaving = true;
              }
          } else if (event instanceof HttpResponse) {
-             this.userService.getById(this.loggedUser.id + '')
+             this.userService.getPortfolioUser()
                  .subscribe(data => {
-                     this.loggedUser = new User(data);
-                     this.shared.updateLoggedUser(this.loggedUser);
-                     this.getPhoto();
+                     this.portfolioUser = new User(data);
                      this.isError = false;
                      this.isEmpty = false;
                      this.isSuccessLoading = true;
@@ -148,7 +154,7 @@ export class SettingsComponent implements OnInit {
 
   public deleteFile() {
      if (!this.loggedUser.isEmptyPhotoLink()) {
-         this.userService.deletePhoto(this.loggedUser.id)
+         this.fileService.deletePortfolioPhoto()
              .subscribe(data => {
                  this.isEmpty = false;
                  this.isSuccess = false;
@@ -162,6 +168,6 @@ export class SettingsComponent implements OnInit {
   }
 
   private getPhoto() {
-     this.photos = this.fileService.getFile(this.loggedUser.getPhotoLink());
+     this.photos = this.fileService.getPortfolioFile();
   }
 }

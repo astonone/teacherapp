@@ -8,6 +8,7 @@ import com.kulygin.teacherapp.exception.UserIsNotExistsException;
 import com.kulygin.teacherapp.repository.UserDetailsRepository;
 import com.kulygin.teacherapp.repository.UserRepository;
 import com.kulygin.teacherapp.service.UserService;
+import com.kulygin.teacherapp.service.impl.yandex.YandexAPI;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private UserDetailsRepository userDetailsRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private YandexAPI yandexAPI;
 
     @Override
     public User findUserByEmail(String email) {
@@ -133,6 +136,7 @@ public class UserServiceImpl implements UserService {
     public User deletePhoto(User user) {
         UserDetails userDetails = user.getUserDetails();
         userDetails.setPhotoLink(null);
+        yandexAPI.deleteFileFromYandexDisk(userDetails.getPhotoLink());
         return userRepository.save(user);
     }
 }

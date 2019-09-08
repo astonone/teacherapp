@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SharedService } from '../../services/shared.service';
 import { User } from '../../dto/user';
+import { Observable } from 'rxjs';
+import { UserService } from '../../services/user.service';
+import { FileService } from '../../services/file.service';
 
 @Component({
     selector: 'home',
@@ -13,13 +15,27 @@ import { User } from '../../dto/user';
 
 export class PortfolioComponent implements OnInit {
 
-    public user: User;
+    public user: User = User.createEmptyUser();
+    public photos: Observable<string[]>;
 
     constructor(private router: Router,
-                private shared: SharedService) {
-        this.user = this.shared.createEmptyUserStub();
+                private userService: UserService,
+                private fileService: FileService) {
+        this.loadPortfolioUser();
     }
 
     ngOnInit() {
+        this.loadPortfolioUser();
+    }
+
+    loadPortfolioUser() {
+        this.userService.getPortfolioUser().subscribe(data => {
+            this.user = new User(data);
+            this.getPhoto();
+        });
+    }
+
+    private getPhoto() {
+        this.photos = this.fileService.getPortfolioFile();
     }
 }

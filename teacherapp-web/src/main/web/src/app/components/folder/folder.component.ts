@@ -60,4 +60,8 @@ export class FolderComponent implements OnInit {
         this.loadFolder(this.folderId);
       });
   }
+
+  isEmptyFilesList() {
+    return this.files.length === 0;
+  }
 }

@@ -9,8 +9,8 @@
                         <mat-card-title>Мой профиль</mat-card-title>
                         <mat-card-subtitle>Аватар</mat-card-subtitle>
                     </mat-card-header>
-                    <img *ngIf="loggedUser.userDetails.photoLink === null" mat-card-image class="user-image" src="./assets/image/empty-profile-black.png" alt="">
-                    <div *ngIf="loggedUser.userDetails.photoLink !== null">
+                    <img *ngIf="portfolioUser.userDetails.photoLink === null" mat-card-image class="user-image" src="./assets/image/empty-profile-black.png" alt="">
+                    <div *ngIf="portfolioUser.userDetails.photoLink !== null">
                         <img *ngFor="let file of photos | async" mat-card-image src="{{file}}" alt="">
                     </div>
                     <mat-card-content class="user-info">

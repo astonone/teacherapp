@@ -46,6 +46,10 @@ export class MaterialsComponent implements OnInit {
     });
   }
 
+  public isEmptyFolderSList() {
+    return this.folders.length === 0;
+  }
+
   private openDeleteFolderPopup(folderId: number): void {
     const dialogRef = this.dialog.open(DeleteFolderPopup, {data : {folderId: folderId}
     });
