@@ -14,6 +14,7 @@ import { UserService } from './services/user.service';
 import { SharedService } from './services/shared.service';
 import { FileService } from './services/file.service';
 import { MaterialsService } from './services/materials.service';
+import { HerokuHackService } from './services/heroku-hack.service';
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
@@ -71,6 +72,7 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         SharedService,
         FileService,
         MaterialsService,
+        HerokuHackService,
         HomeComponent,
         PortfolioComponent,
         MaterialsComponent,

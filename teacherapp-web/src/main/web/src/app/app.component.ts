@@ -1,9 +1,10 @@
-﻿import {Component, ElementRef, HostBinding, Inject} from '@angular/core';
+﻿import { Component, ElementRef, Inject } from '@angular/core';
 import { SharedService } from './services/shared.service';
 import { Router } from '@angular/router';
 import { LoginPopup } from './components/home/popup/login/login-popup';
 import { MatDialog } from '@angular/material';
 import { DOCUMENT } from '@angular/common';
+import { HerokuHackService } from './services/heroku-hack.service';
 
 @Component({
     selector: 'app-root',
@@ -15,13 +16,19 @@ import { DOCUMENT } from '@angular/common';
 
 export class AppComponent {
 
-    public panelOpenState = true;
+    private interval: any;
 
     constructor(public shared: SharedService,
                 private router: Router,
                 private dialog: MatDialog,
+                private herokuHackService: HerokuHackService,
                 @Inject(DOCUMENT) document: ElementRef) {
         this.shared.setLoggedUser();
+
+        this.interval = setInterval(() => {
+            this.herokuHackService.check().subscribe(() => {
+            });
+        }, 300000);
     }
 
     public showUserInfo() {
