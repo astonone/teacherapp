@@ -4,6 +4,7 @@ import com.kulygin.teacherapp.domain.Folder;
 import com.kulygin.teacherapp.repository.FileRepository;
 import com.kulygin.teacherapp.repository.FolderRepository;
 import com.kulygin.teacherapp.service.MaterialsService;
+import com.kulygin.teacherapp.service.impl.yandex.YandexAPI;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class MaterialsServiceImpl implements MaterialsService {
 
     @Autowired
     private FolderRepository folderRepository;
+
+    @Autowired
+    private YandexAPI yandexAPI;
 
     @Override
     public Folder getFolderById(Integer folderId) {
@@ -41,6 +45,10 @@ public class MaterialsServiceImpl implements MaterialsService {
 
     @Override
     public void deleteFolderById(Integer folderId) {
+        Folder folderById = getFolderById(folderId);
+        if (folderById != null) {
+            folderById.getFiles().forEach(file -> yandexAPI.deleteFileFromYandexDisk(file.getFilename()));
+        }
         folderRepository.deleteById(folderId);
     }
 
@@ -68,9 +76,8 @@ public class MaterialsServiceImpl implements MaterialsService {
     public Folder deleteFileFromFolder(Folder folder, Integer fileId) {
         com.kulygin.teacherapp.domain.File file = fileRepository.findById(fileId).orElse(null);
         if (file != null) {
-            folder.getFiles().remove(file);
-            file.setFolder(null);
-            fileRepository.save(file);
+            fileRepository.deleteById(file.getId());
+            yandexAPI.deleteFileFromYandexDisk(file.getFilename());
         }
         return folder;
     }

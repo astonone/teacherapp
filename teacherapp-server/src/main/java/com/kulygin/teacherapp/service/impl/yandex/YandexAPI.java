@@ -1,9 +1,11 @@
 package com.kulygin.teacherapp.service.impl.yandex;
 
+import com.kulygin.teacherapp.utils.TransliterationUtils;
 import com.yandex.disk.rest.Credentials;
 import com.yandex.disk.rest.ResourcesArgs;
 import com.yandex.disk.rest.RestClient;
 import com.yandex.disk.rest.exceptions.ServerException;
+import com.yandex.disk.rest.exceptions.ServerIOException;
 import com.yandex.disk.rest.exceptions.http.HttpCodeException;
 import com.yandex.disk.rest.json.Link;
 import lombok.extern.log4j.Log4j;
@@ -44,7 +46,7 @@ public class YandexAPI {
         String serverPath = "teacherapp-storage/";
         String localPath = "storage/";
 
-        String filename = uploadedFileRef.getOriginalFilename();
+        String filename = TransliterationUtils.toTranslitAndChangeSpaces(uploadedFileRef.getOriginalFilename());
 
         Link uploadLink = restClient.getUploadLink(serverPath + filename, true);
 
@@ -93,6 +95,14 @@ public class YandexAPI {
         } catch (MalformedURLException e) {
             log.error("Convertation file to resource error: ", e);
             return null;
+        }
+    }
+
+    public void deleteFileFromYandexDisk(String filename) {
+        try {
+            restClient.delete("/teacherapp-storage/" + filename, true);
+        } catch (Exception e) {
+            log.error("Error via deleting file from Yandex disk: ", e);
         }
     }
 }

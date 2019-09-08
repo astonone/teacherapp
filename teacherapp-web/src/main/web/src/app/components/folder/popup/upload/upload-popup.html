@@ -13,6 +13,7 @@
         <span *ngIf="isSuccess" class="uploaded-success-label">Файл успешно загружен и сохранен!</span>
         <span *ngIf="isLoading">Идет загрузка, пожалуйста подождите ...</span>
         <span *ngIf="isSaving">Файл загружен, идет сохранение</span>
+        <span *ngIf="isError" class="uploaded-error-label">Ошибка, файл с таким именем уже существует!</span>
         <button class="upload-container-item" mat-raised-button color="primary" [disabled]="!selectedFiles" (click)="upload()">Загрузить</button>
         <button (click)="closePopup()" mat-raised-button color="warn">Закрыть</button>
     </div>

@@ -9,5 +9,6 @@
       <mat-icon *ngIf="shared.isUserLogin()" mat-list-icon class="remove-item" (click)="openDeleteFolderPopup(folder.id)">delete_sweep</mat-icon>
       <mat-icon *ngIf="shared.isUserLogin()" mat-list-icon class="remove-item" (click)="openCreateFolderPopup(true, folder.id, folder.name)">create</mat-icon>
     </mat-list-item>
+    <p class="create-button" *ngIf="isEmptyFolderSList()">На данный момент, не создано ни одной папки</p>
   </mat-list>
 </div>
