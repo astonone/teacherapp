@@ -115,14 +115,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(UserDTO userDTO) {
-        if (userDTO.getEmail().equals("") || userDTO.getPassword().equals("") || userDTO.getNewPassword().equals("")) {
-            return null;
-        }
         User user = getUserById(userDTO.getId());
         if (user != null) {
-            if (passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+            if (userDTO.getPassword() == null && userDTO.getNewPassword() == null && userDTO.getEmail() == null) {
+                if (passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+                    user.setEmail(userDTO.getEmail());
+                    user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
+
+                    user = userRepository.save(user);
+                } else {
+                    user = null;
+                }
+            } else if (userDTO.getPassword() == null && userDTO.getNewPassword() == null) {
+                if (passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
+                    user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
+
+                    user = userRepository.save(user);
+                } else {
+                    user = null;
+                }
+            } else if (userDTO.getEmail() != null) {
                 user.setEmail(userDTO.getEmail());
-                user.setPassword(passwordEncoder.encode(userDTO.getNewPassword()));
 
                 user = userRepository.save(user);
             } else {

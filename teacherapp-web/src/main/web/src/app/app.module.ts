@@ -15,6 +15,7 @@ import { SharedService } from './services/shared.service';
 import { FileService } from './services/file.service';
 import { MaterialsService } from './services/materials.service';
 import { HerokuHackService } from './services/heroku-hack.service';
+import { NewsService } from './services/news.service';
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
@@ -22,6 +23,9 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { MaterialsComponent } from './components/materials/materials.component';
 import { FolderComponent } from './components/folder/folder.component';
+import { NewsComponent } from './components/news/news.component';
+import { StudentsComponent } from './components/students/students.component';
+import { ParentsComponent } from './components/parents/parents.component';
 
 /*Popups*/
 import { CreateUserDialog } from './components/home/popup/registration/dialog/create-user-dialog';
@@ -32,9 +36,8 @@ import { UploadPopup } from './components/folder/popup/upload/upload-popup';
 import { CreateFolderPopup } from './components/materials/popup/folders/create-rename/create-folder-popup';
 import { DeleteFolderPopup } from './components/materials/popup/folders/delete/delete-folder-popup';
 import { DeleteFilePopup } from './components/folder/popup/delete/delete-file-popup';
-
-/*Pipe*/
-import { SortPipe } from 'app/pipe/sort.pipe';
+import { DeleteNewPopup } from './components/news/popup/delete/delete-new-popup';
+import { CreateNewPopup } from './components/news/popup/create/create-new-popup';
 
 @NgModule({
     imports: [
@@ -52,6 +55,9 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         SettingsComponent,
         MaterialsComponent,
         FolderComponent,
+        NewsComponent,
+        StudentsComponent,
+        ParentsComponent,
         CreateUserDialog,
         ErrorCreateUserDialog,
         LoginPopup,
@@ -60,7 +66,8 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         CreateFolderPopup,
         DeleteFolderPopup,
         DeleteFilePopup,
-        SortPipe],
+        DeleteNewPopup,
+        CreateNewPopup],
     entryComponents: [
         CreateUserDialog,
         ErrorCreateUserDialog,
@@ -69,6 +76,8 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         UploadPopup,
         CreateFolderPopup,
         DeleteFolderPopup,
+        DeleteNewPopup,
+        CreateNewPopup,
         DeleteFilePopup
     ],
     providers: [
@@ -79,15 +88,21 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         CreateUserDialog,
         DeleteFolderPopup,
         DeleteFilePopup,
+        DeleteNewPopup,
+        CreateNewPopup,
         ErrorCreateUserDialog,
         UserService,
         SharedService,
         FileService,
         MaterialsService,
         HerokuHackService,
+        NewsService,
         HomeComponent,
         PortfolioComponent,
         MaterialsComponent,
+        NewsComponent,
+        StudentsComponent,
+        ParentsComponent,
         FolderComponent
     ],
     bootstrap: [AppComponent]

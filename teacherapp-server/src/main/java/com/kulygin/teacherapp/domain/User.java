@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @Builder
@@ -14,7 +15,7 @@ import java.util.Collections;
 @Entity
 @Table(schema = "public")
 @EqualsAndHashCode(of = {"id"})
-@ToString(exclude = {"userDetails"})
+@ToString(exclude = {"userDetails", "news"})
 public class User implements org.springframework.security.core.userdetails.UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +26,9 @@ public class User implements org.springframework.security.core.userdetails.UserD
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_details_id")
     private UserDetails userDetails;
+
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    private List<New> news;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
