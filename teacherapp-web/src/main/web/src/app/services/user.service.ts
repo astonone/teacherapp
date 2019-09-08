@@ -17,11 +17,10 @@ export class UserService {
   private USER_CREATE: string;
   private USER_UPDATE: string;
   private USER_ADD_USER_DATA: string;
-  private USER_UPLOAD_PHOTO: string;
-  private USER_DELETE_PHOTO: string;
   private USER_UPDATE_INFO: string;
   private USER_GET_BY_ID: string;
   private GET_UPLOADED_PHOTO: string;
+  private GET_PORTFOLIO_USER: string;
 
   constructor(private http: HttpClient,
               private shared: SharedService) {
@@ -35,10 +34,9 @@ export class UserService {
     this.USER_CREATE = this.SERVER_URL + '/api/user/create';
     this.USER_UPDATE = this.SERVER_URL + '/api/user/update';
     this.USER_ADD_USER_DATA = this.SERVER_URL + '/api/user/{id}/user_details';
-    this.USER_UPLOAD_PHOTO = this.SERVER_URL + '/api/user/{id}/upload';
-    this.USER_DELETE_PHOTO = this.SERVER_URL + '/api/user/{id}/deletePhoto';
     this.USER_UPDATE_INFO = this.SERVER_URL + '/api/user/{id}/user_details';
     this.GET_UPLOADED_PHOTO  = this.SERVER_URL + '/api/user/files/{name}';
+    this.GET_PORTFOLIO_USER  = this.SERVER_URL + '/api/user/getPortfolioUser';
   }
 
   private getOptions() {
@@ -64,6 +62,10 @@ export class UserService {
     return this.http.post<Observable<Object>>(this.USER_CREATE + '?email=' + email + '&password=' + password, null);
   }
 
+  public getPortfolioUser() {
+    return this.http.get<Observable<Object>>(this.GET_PORTFOLIO_USER);
+  }
+
   public addUserDetails(id: number, request: any) {
     const regExp = /{id}/gi;
     const url = this.USER_ADD_USER_DATA.replace(regExp, id.toString());
@@ -72,12 +74,6 @@ export class UserService {
 
   public updateUser(user: any) {
     return this.http.post<Observable<Object>>(this.USER_UPDATE, user);
-  }
-
-  public deletePhoto(id: number) {
-    const regExp = /{id}/gi;
-    const url = this.USER_DELETE_PHOTO.replace(regExp, id.toString());
-    return this.http.post<Observable<Object>>(url, {});
   }
 
   public updateUserInfo(user: User) {

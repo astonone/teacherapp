@@ -6,7 +6,10 @@
                 <mat-card-title>Кулыгина Ольга Викторовна</mat-card-title>
                 <mat-card-subtitle>МБОУ Гимназия №2 г. Саров Нижегородская область</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image class="home-photo" src="../../../assets/image/home-card-photo.JPG" alt="Photo of a Kulygina O.V">
+            <img *ngIf="user.userDetails.photoLink === null" mat-card-image class="user-image" src="./assets/image/empty-profile-black.png" alt="">
+            <div *ngIf="user.userDetails.photoLink !== null">
+                <img *ngFor="let file of photos | async" mat-card-image src="{{file}}" alt="">
+            </div>
             <mat-card-content>
                 <p>
                     Учитель высшей квалификационной категории
