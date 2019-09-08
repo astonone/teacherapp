@@ -28,13 +28,16 @@ export class SharedService {
 
   public getStorage = () =>  localStorage.getItem('isRemember') === 'true' ? localStorage : sessionStorage;
 
-  public isLoginPage = () => this.router.url === '/login';
+  public isSettingsPage = () => this.router.url === '/settings';
 
   public logout() {
     this.isLogin = false;
     this.loggedUser = {};
     this.getStorage().setItem('token', '');
     this.getStorage().setItem('loggedUser', '');
+    if(this.isSettingsPage()) {
+      this.router.navigate(['home']);
+    }
   }
 
   public setLoggedUser() {

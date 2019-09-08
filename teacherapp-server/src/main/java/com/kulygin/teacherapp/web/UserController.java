@@ -105,7 +105,7 @@ public class UserController {
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {
         Resource file = yandexAPI.loadFileFromYandexDisk(filename);
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; name=\"" + file.getFilename() + "\"")
                 .body(file);
     }
 

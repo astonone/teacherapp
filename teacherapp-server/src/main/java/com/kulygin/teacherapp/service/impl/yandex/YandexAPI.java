@@ -44,7 +44,7 @@ public class YandexAPI {
         String serverPath = "teacherapp-storage/";
         String localPath = "storage/";
 
-        String filename = UUID.randomUUID().toString() + uploadedFileRef.getOriginalFilename().substring(uploadedFileRef.getOriginalFilename().lastIndexOf("."));
+        String filename = uploadedFileRef.getOriginalFilename();
 
         Link uploadLink = restClient.getUploadLink(serverPath + filename, true);
 

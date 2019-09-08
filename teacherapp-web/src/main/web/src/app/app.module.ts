@@ -13,18 +13,22 @@ import { MainUiModule } from './modules/main-ui/main-ui.module';
 import { UserService } from './services/user.service';
 import { SharedService } from './services/shared.service';
 import { FileService } from './services/file.service';
+import { MaterialsService } from './services/materials.service';
+import { HerokuHackService } from './services/heroku-hack.service';
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
-import { UploadComponent } from './components/upload/upload.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { MaterialsComponent } from './components/materials/materials.component';
+import { FolderComponent } from './components/folder/folder.component';
 
 /*Popups*/
 import { CreateUserDialog } from './components/home/popup/registration/dialog/create-user-dialog';
 import { ErrorCreateUserDialog } from './components/home/popup/registration/dialog/error-create-user-dialog';
 import { LoginPopup } from './components/home/popup/login/login-popup';
 import { RegistrationPopup } from './components/home/popup/registration/registration-popup';
+import { UploadPopup } from './components/folder/popup/upload-popup';
 
 /*Pipe*/
 import { SortPipe } from 'app/pipe/sort.pipe';
@@ -42,29 +46,37 @@ import { SortPipe } from 'app/pipe/sort.pipe';
         AppComponent,
         HomeComponent,
         PortfolioComponent,
-        UploadComponent,
         SettingsComponent,
+        MaterialsComponent,
+        FolderComponent,
         CreateUserDialog,
         ErrorCreateUserDialog,
         LoginPopup,
         RegistrationPopup,
+        UploadPopup,
         SortPipe],
     entryComponents: [
         CreateUserDialog,
         ErrorCreateUserDialog,
         LoginPopup,
-        RegistrationPopup
+        RegistrationPopup,
+        UploadPopup
     ],
     providers: [
         LoginPopup,
         RegistrationPopup,
+        UploadPopup,
         CreateUserDialog,
         ErrorCreateUserDialog,
         UserService,
         SharedService,
         FileService,
+        MaterialsService,
+        HerokuHackService,
         HomeComponent,
-        PortfolioComponent
+        PortfolioComponent,
+        MaterialsComponent,
+        FolderComponent
     ],
     bootstrap: [AppComponent]
 })

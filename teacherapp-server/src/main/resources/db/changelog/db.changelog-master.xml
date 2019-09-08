@@ -50,4 +50,34 @@
                                  referencedColumnNames="id"
                                  referencedTableName="user_details"/>
     </changeSet>
+    <changeSet author="viktor.kulygin" id="3">
+        <createTable tableName="folder">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="viktor.kulygin" id="4">
+        <createTable tableName="file">
+            <column name="id" type="INTEGER">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="filename" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="folder_id" type="INTEGER">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="folder_id"
+                                 baseTableName="file"
+                                 constraintName="fk_file_folder"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="folder"/>
+    </changeSet>
 </databaseChangeLog>

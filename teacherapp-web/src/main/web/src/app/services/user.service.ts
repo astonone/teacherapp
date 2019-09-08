@@ -38,7 +38,7 @@ export class UserService {
     this.USER_UPLOAD_PHOTO = this.SERVER_URL + '/api/user/{id}/upload';
     this.USER_DELETE_PHOTO = this.SERVER_URL + '/api/user/{id}/deletePhoto';
     this.USER_UPDATE_INFO = this.SERVER_URL + '/api/user/{id}/user_details';
-    this.GET_UPLOADED_PHOTO  = this.SERVER_URL + '/api/user/files/{filename}';
+    this.GET_UPLOADED_PHOTO  = this.SERVER_URL + '/api/user/files/{name}';
   }
 
   private getOptions() {
@@ -61,7 +61,7 @@ export class UserService {
   }
 
   public createUser(email: string, password: string) {
-    return this.http.post<Observable<Object>>(this.USER_CREATE + '?email=' + email + '&password=' + password, this.getOptions());
+    return this.http.post<Observable<Object>>(this.USER_CREATE + '?email=' + email + '&password=' + password, null);
   }
 
   public addUserDetails(id: number, request: any) {
@@ -71,30 +71,30 @@ export class UserService {
   }
 
   public updateUser(user: any) {
-    return this.http.post<Observable<Object>>(this.USER_UPDATE, user, this.getOptions());
+    return this.http.post<Observable<Object>>(this.USER_UPDATE, user);
   }
 
   public deletePhoto(id: number) {
     const regExp = /{id}/gi;
     const url = this.USER_DELETE_PHOTO.replace(regExp, id.toString());
-    return this.http.post<Observable<Object>>(url, {}, this.getOptions());
+    return this.http.post<Observable<Object>>(url, {});
   }
 
   public updateUserInfo(user: User) {
     const regExp = /{id}/gi;
     const url = this.USER_UPDATE_INFO.replace(regExp, user.id.toString());
-    return this.http.put<Observable<Object>>(url, user.userDetails.toObject(), this.getOptions());
+    return this.http.put<Observable<Object>>(url, user.userDetails.toObject());
   }
 
   public deleteUser(id: number) {
     const regExp = /{id}/gi;
     const url = this.USER_DELETE.replace(regExp, id.toString());
-    return this.http.delete<Observable<Object>>(url, this.getOptions());
+    return this.http.delete<Observable<Object>>(url);
   }
 
   public getById(id: string) {
     const regExp = /{id}/gi;
     const url = this.USER_GET_BY_ID.replace(regExp, id);
-    return this.http.get<Observable<Object>>(url, this.getOptions());
+    return this.http.get<Observable<Object>>(url);
   }
 }
