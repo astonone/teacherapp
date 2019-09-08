@@ -32,10 +32,10 @@ export class User {
     }
 
     constructor(data: any) {
-        this._id = data.id;
-        this._email = data.email;
-        this._password = data.password;
-        this._newPassword = data.newPassword;
+        this._id = data.id ? data.id : null;
+        this._email = data.email ? data.email : null;
+        this._password = data.password ? data.password : null;
+        this._newPassword = data.newPassword ? data.newPassword : null;
         this._userDetails = !data.userDetails || data.userDetails.id !== null ? new UserDetails(data.userDetails) :
             User.createEmptyUserDetails();
     }

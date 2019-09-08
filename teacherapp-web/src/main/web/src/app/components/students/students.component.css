@@ -1,0 +1,23 @@
+.students {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.students-text {
+    margin: 10px;
+    text-align: center;
+}
+
+@media screen and (min-width: 481px) {
+    .students {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .students-text {
+        margin: 10px;
+        text-align: center;
+    }
+}
