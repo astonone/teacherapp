@@ -6,7 +6,7 @@
             <mat-icon mat-list-icon>comment</mat-icon>
             <mat-icon *ngIf="shared.isUserLogin()" mat-list-icon class="remove-item" (click)="deleteNew(new.id)">delete_sweep</mat-icon>
             <h4 mat-line>{{new.title}}</h4>
-            <h6 mat-line>{{new.text}}</h6>
+            <h6 mat-line style="word-break: break-all;white-space: normal;">{{new.text}}</h6>
             <p mat-line> {{new.user.printUserName()}},{{new.created.printDate()}} </p>
         </mat-list-item>
     </mat-list>
