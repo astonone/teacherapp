@@ -2,7 +2,7 @@
 <div class="news-container">
     <mat-list>
         <h3 mat-subheader>Новости</h3>
-        <mat-list-item *ngFor="let new of news">
+        <mat-list-item *ngFor="let new of news" class="news-item">
             <mat-icon *ngIf="!shared.isMobile()" mat-list-icon>comment</mat-icon>
             <mat-icon *ngIf="shared.isUserLogin()" mat-list-icon class="remove-item" (click)="deleteNew(new.id)">delete_sweep</mat-icon>
             <h4 mat-line class="news-title">{{new.title}}</h4>
