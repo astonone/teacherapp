@@ -3,11 +3,11 @@
     <mat-list>
         <h3 mat-subheader>Новости</h3>
         <mat-list-item *ngFor="let new of news">
-            <mat-icon mat-list-icon>comment</mat-icon>
+            <mat-icon *ngIf="!shared.isMobile()" mat-list-icon>comment</mat-icon>
             <mat-icon *ngIf="shared.isUserLogin()" mat-list-icon class="remove-item" (click)="deleteNew(new.id)">delete_sweep</mat-icon>
-            <h4 mat-line>{{new.title}}</h4>
-            <h6 mat-line>{{new.text}}</h6>
-            <p mat-line> {{new.user.printUserName()}},{{new.created.printDate()}} </p>
+            <h4 mat-line class="news-title">{{new.title}}</h4>
+            <h6 mat-line class="news-text">{{new.text}}</h6>
+            <p mat-line class="news-info"> {{new.user.printUserName()}},{{new.created.printDate()}} </p>
         </mat-list-item>
     </mat-list>
     <p class="news-button" *ngIf="isEmptyNewsList()">Новостей пока нет</p>

@@ -1,13 +1,13 @@
 <div class="setting">
     <div class="setting__about">
-        <h3 class="user__about_label">Тут вы можете отредактировать данные своего профиля</h3>
+        <h3 class="user__about_label">Тут вы можете отредактировать данные своего профиля и фото для портфолио</h3>
         <div class="about-container">
             <div class="about-avatar">
                 <mat-card class="user-card">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image"></div>
                         <mat-card-title>Мой профиль</mat-card-title>
-                        <mat-card-subtitle>Аватар</mat-card-subtitle>
+                        <mat-card-subtitle>Фото для портфолио</mat-card-subtitle>
                     </mat-card-header>
                     <img *ngIf="portfolioUser.userDetails.photoLink === null" mat-card-image class="user-image" src="./assets/image/empty-profile-black.png" alt="">
                     <div *ngIf="portfolioUser.userDetails.photoLink !== null">

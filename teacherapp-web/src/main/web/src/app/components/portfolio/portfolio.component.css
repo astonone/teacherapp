@@ -24,6 +24,11 @@
         width: 30%;
     }
 
+    .portfolio-text {
+        margin: 10px ;
+        text-align: start;
+    }
+
     .portfolio__content {
         width: 70%;
     }

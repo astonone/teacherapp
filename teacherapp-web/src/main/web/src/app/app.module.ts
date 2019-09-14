@@ -14,7 +14,6 @@ import { UserService } from './services/user.service';
 import { SharedService } from './services/shared.service';
 import { FileService } from './services/file.service';
 import { MaterialsService } from './services/materials.service';
-import { HerokuHackService } from './services/heroku-hack.service';
 import { NewsService } from './services/news.service';
 
 /*Components*/
@@ -95,7 +94,6 @@ import { CreateNewPopup } from './components/news/popup/create/create-new-popup'
         SharedService,
         FileService,
         MaterialsService,
-        HerokuHackService,
         NewsService,
         HomeComponent,
         PortfolioComponent,

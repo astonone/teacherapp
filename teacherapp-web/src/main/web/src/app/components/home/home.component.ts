@@ -3,8 +3,6 @@ import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../../services/shared.service';
 import { User } from '../../dto/user';
-import { FileService } from '../../services/file.service';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'home',
@@ -20,8 +18,7 @@ export class HomeComponent implements OnInit {
 
     constructor(private router: Router,
                 private userService: UserService,
-                private shared: SharedService,
-                private fileService: FileService) {
+                private shared: SharedService) {
         this.user = this.shared.createEmptyUserStub();
     }
 

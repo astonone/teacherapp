@@ -13,6 +13,10 @@
     text-align: center;
 }
 
+.home-list {
+    text-align: start;
+}
+
 @media screen and (min-width: 481px) {
     .home {
         display: flex;
