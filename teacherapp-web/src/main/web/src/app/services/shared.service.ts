@@ -35,7 +35,7 @@ export class SharedService {
     this.loggedUser = {};
     this.getStorage().setItem('token', '');
     this.getStorage().setItem('loggedUser', '');
-    if(this.isSettingsPage()) {
+    if (this.isSettingsPage()) {
       this.router.navigate(['home']);
     }
   }
@@ -47,8 +47,18 @@ export class SharedService {
     }
   }
 
+  public setTheme(theme: string) {
+    localStorage.setItem('theme', theme);
+  }
+
+  public getThemeAndAplly() {
+    const theme = localStorage.getItem('theme');
+    const themeElement: any = document.getElementById('themeAsset');
+    themeElement.href = '/assets/theme/' + theme + '.css';
+  }
+
   public getLoggedUser = () => (this.getStorage().getItem('loggedUser') !== null && this.getStorage().getItem('loggedUser') !== '') ?
-      new User(JSON.parse(this.getStorage().getItem('loggedUser'))) : null;
+      new User(JSON.parse(this.getStorage().getItem('loggedUser'))) : null
 
 
   public isUserLogin = () => this.isLogin;

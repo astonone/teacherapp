@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { LoginPopup } from './components/home/popup/login/login-popup';
 import { MatDialog } from '@angular/material';
 import { DOCUMENT } from '@angular/common';
-import { HerokuHackService } from './services/heroku-hack.service';
 
 @Component({
     selector: 'app-root',
@@ -16,19 +15,16 @@ import { HerokuHackService } from './services/heroku-hack.service';
 
 export class AppComponent {
 
-    private interval: any;
-
     constructor(public shared: SharedService,
                 private router: Router,
                 private dialog: MatDialog,
-                private herokuHackService: HerokuHackService,
                 @Inject(DOCUMENT) document: ElementRef) {
+        if (localStorage.getItem('theme') === null) {
+            this.onSetTheme('purple-green');
+        } else {
+            this.shared.getThemeAndAplly();
+        }
         this.shared.setLoggedUser();
-
-        this.interval = setInterval(() => {
-            this.herokuHackService.check().subscribe(() => {
-            });
-        }, 300000);
     }
 
     public showUserInfo() {
@@ -54,6 +50,7 @@ export class AppComponent {
     onSetTheme(theme: string) {
         const themeElement: any = document.getElementById('themeAsset');
         themeElement.href = '/assets/theme/' + theme + '.css';
+        this.shared.setTheme(theme);
     }
 
     toggleSidenav(sidenav: any) {

@@ -53,9 +53,9 @@
                 <button  *ngIf="!shared.isMobile() && shared.isUserLogin()" class="header-panel-el" mat-raised-button color="warn" (click)="logout()">Выход</button>
             </div>
             <div class="header-control-label-panel">
-                <button mat-button [matMenuTriggerFor]="menu">Панель управления</button>
+                <button *ngIf="(!shared.isUserLogin() || !shared.isMobile())" mat-button [matMenuTriggerFor]="menu">Панель управления</button>
                 <mat-menu #menu="matMenu">
-                    <button *ngIf="!shared.isUserLogin() "mat-menu-item (click)="openLoginPopup()">Вход</button>
+                    <button *ngIf="!shared.isUserLogin()" mat-menu-item (click)="openLoginPopup()">Вход</button>
                     <button *ngIf="!shared.isMobile()" mat-menu-item [matMenuTriggerFor]="themes">Темы</button>
                 </mat-menu>
                 <mat-menu #themes="matMenu">
