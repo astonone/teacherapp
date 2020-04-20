@@ -15,11 +15,13 @@ import { User } from '../../dto/user';
 export class HomeComponent implements OnInit {
 
     public user: User;
+    public showEmail: boolean;
 
     constructor(private router: Router,
                 private userService: UserService,
                 private shared: SharedService) {
         this.user = this.shared.createEmptyUserStub();
+        this.showEmail = false;
     }
 
     ngOnInit() {
