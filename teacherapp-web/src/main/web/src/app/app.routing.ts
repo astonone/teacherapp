@@ -7,6 +7,7 @@ import { FolderComponent } from './components/folder/folder.component';
 import { NewsComponent } from './components/news/news.component';
 import { StudentsComponent } from './components/students/students.component';
 import { ParentsComponent } from './components/parents/parents.component';
+import {FeedbackComponent} from "./components/feedback/feedback.component";
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
     { path: 'news', component: NewsComponent },
     { path: 'students', component: StudentsComponent },
     { path: 'parents', component: ParentsComponent },
+    { path: 'feedback', component: FeedbackComponent },
     { path: 'folder/:id', component: FolderComponent },
     { path: '**', redirectTo: 'home' }
 ];

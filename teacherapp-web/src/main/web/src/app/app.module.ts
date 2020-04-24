@@ -15,6 +15,7 @@ import { SharedService } from './services/shared.service';
 import { FileService } from './services/file.service';
 import { MaterialsService } from './services/materials.service';
 import { NewsService } from './services/news.service';
+import { FeedbackService } from './services/feedback.service';
 
 /*Components*/
 import { HomeComponent } from './components/home/home.component';
@@ -25,6 +26,7 @@ import { FolderComponent } from './components/folder/folder.component';
 import { NewsComponent } from './components/news/news.component';
 import { StudentsComponent } from './components/students/students.component';
 import { ParentsComponent } from './components/parents/parents.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 /*Popups*/
 import { CreateUserDialog } from './components/home/popup/registration/dialog/create-user-dialog';
@@ -57,6 +59,7 @@ import { CreateNewPopup } from './components/news/popup/create/create-new-popup'
         NewsComponent,
         StudentsComponent,
         ParentsComponent,
+        FeedbackComponent,
         CreateUserDialog,
         ErrorCreateUserDialog,
         LoginPopup,
@@ -95,7 +98,9 @@ import { CreateNewPopup } from './components/news/popup/create/create-new-popup'
         FileService,
         MaterialsService,
         NewsService,
+        FeedbackService,
         HomeComponent,
+        FeedbackComponent,
         PortfolioComponent,
         MaterialsComponent,
         NewsComponent,

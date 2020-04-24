@@ -19,6 +19,7 @@
                 <a mat-list-item routerLink="/parents">Родителям</a>
                 <a mat-list-item routerLink="/materials">Материалы</a>
                 <a mat-list-item routerLink="/news">Новости</a>
+                <a mat-list-item routerLink="/feedback">Обратная связь</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item routerLink="/settings">Настройки</a>
                 <a *ngIf="shared.isMobile() && shared.isUserLogin()" mat-list-item (click)="logout()">Выход</a>
                 <mat-accordion *ngIf="shared.isMobile()">

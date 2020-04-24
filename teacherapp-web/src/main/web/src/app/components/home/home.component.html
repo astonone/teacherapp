@@ -9,8 +9,7 @@
         <li><a routerLink="/parents"><i>Информацию для родителей моих учеников</i></a></li>
         <li><a routerLink="/materials"><i>Фотоальбомы о наших событиях</i></a></li>
     </ul><br>
-    <button mat-raised-button color="primary" (click)="showEmail = true">Обратная связь</button><br>
-    <p *ngIf="showEmail">Для связи со мной напишите мне на email: kulygina.olga@mail.ru</p><br>
+    <button mat-raised-button color="primary" routerLink="/feedback">Обратная связь</button><br>
     </div>
 </div>
 
